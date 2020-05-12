@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* { 
+    margin: 0;
+    padding: 5;
+}
+
+body{
+    font-family: 'Bebas Neue', cursive; 
+}
+h1{
+    letter-spacing: 0.5px;
+}
+.idProducto { 
+    color: #777;
+    font-weight: 100;
+}
