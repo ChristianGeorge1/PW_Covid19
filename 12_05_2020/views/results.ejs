@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link href="/assets/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+    <ul>
+        <% data.forEach(function(o) { %>
+        <li><%= o.userName %> --> <%= o.password %></li>
+        <% }); %>
+    </ul>
+
+</body>
+
+</html>

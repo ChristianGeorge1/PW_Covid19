@@ -9,10 +9,11 @@
 
     <body>
         <form method="POST" action="/person">
-            UserName <input type="text" id="userName" name="userName"/><br />
+            Firstname <input type="text" id="firstname" name="firstname" /><br />
+            Lastname <input type="text" id="lastname" name="lastname" /><br />
             <input type="submit" value="Enviar">
 
-          <!--<script>
+            <script>
                 $.ajax({
                 type: "POST",
                 url: "/personjson",
@@ -24,7 +25,6 @@
                 contentType: "application/json"
                 });
             </script>
-            -->  
         </form>
     </body>
 
