@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link href="/assets/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <form method="POST" action="/updateOne">
+
+        Nombre <input id="userName" name="userName" /><br/>
+        Contraseña <input id = "password" name="password" />
+        <input value="<%= id %>" hidden=false id="id" name="id">
+        
+        <button type="submit">Modificar</button>
+    </form>
+
+</body>
+
+</html>

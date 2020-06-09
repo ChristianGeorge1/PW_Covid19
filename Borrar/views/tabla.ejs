@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table>
+        <% users.forEach(function(o) { %> 
+
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Id</th>
+            <th>Borrar</th>
+            <th>Editar</th>
+        </tr>
+        
+        <tr>
+           
+                <td><%= o.userName %></td>
+                <td><%= o.password %></td>
+                <td><%= o.id %></td>
+                <td>
+                    <form method="POST" action="/eliminar/<%= o.id %>">
+                        <button type="submit">Borrar</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="/update/<%= o.id %>">
+                        <button type="submit">Editar</button></td>
+                    </form>
+                <td>
+            <% }); %>
+        </tr>
+        
+    </table>
+</body>
+</html>
