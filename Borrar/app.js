@@ -46,6 +46,56 @@ app.get('/person/:id', (req, res)=>{
         Qstr: req.query.Qstr
     });
 })
+
+//?Ruta para obtener  datos en modo listado 
+app.get('/tabla', (req, res) => { 
+    var user = mongoose.model('User', userSchema); 
+
+    user.find({}, function (err, users){ 
+        res.render('tabla', {users})
+
+    })
+})
+
+//?Método de borrar mediante el ID 
+app.post('/eliminar/:id', function(req, res){ 
+    var user = mongoose.model('User', userSchema);
+    
+    user.findByIdAndDelete(req.params.id, (err, users) => {
+        if(err){ 
+            res.send('Algo salio mal')
+        }else{ 
+            res.redirect('/tabla');
+        }
+    }); 
+    
+})
+
+//?Editar 
+app.post('/update/:id', (req, res) => { 
+
+    res.render('update2', {
+        id: req.params.id
+    })
+
+})
+//?Editar 2
+app.post('/updateOne', urlencodedParser, (req, res) => {
+
+    var user = mongoose.model('User', userSchema);
+
+    user.findByIdAndUpdate(req.body.id, { 
+        userName: req.body.userName, 
+        password: req.body.password
+    }, (err) => {
+        if(err){
+            res.send('Hubo un error en el cambio')
+        }else{
+            res.redirect('/tabla')
+        }
+    })
+})
+
 //?Validar 
 app.post('/validar', urlencodedParser, (req, res)=>{
     var user = mongoose.model('User', userSchema);
@@ -70,8 +120,7 @@ app.post('/validar', urlencodedParser, (req, res)=>{
                     if(err){
                         console.log('Salio un error')
                     }else{
-                        res.send("Se añadio la persona correctamente")
-                        console.log('Salio chido')
+                        res.redirect('/tabla');
 
                     }
                 }); 
@@ -85,20 +134,13 @@ app.post('/validar', urlencodedParser, (req, res)=>{
 app.post('/person', urlencodedParser, (req, res)=>{
     var user = mongoose.model('User', userSchema);
 
-    // res.send('Thanks');
     console.log(req.body.userName);
-    // console.log(req.body.lastname);
-    //aqui empieza la busqueda
-   // var user = mongoose.model('User', userSchema);
     user.find({ userName: req.body.userName }, function (err, data) {
-        // doc is a Document
         if (err) {
             console.log('Hubo un error');
         } else {
             if (data.length > 0) {
-                // console.log(data);
                 res.render('results', { data });
-                // console.log(doc);
             } else { res.send('no hay coincidencias para el criterio de busqueda'); }
         }
     });
